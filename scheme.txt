@@ -1,4 +1,7 @@
-# Argumentos a tener en cuenta:
+# Execution order
+% [$] [flags] [width] conversion
+
+# Conversion specifiers to have in mind:
 	- %c, %s
 	- %p, 
 	- %d, %i, %u
@@ -8,3 +11,8 @@
 # Flags
 '-' '0' '.' 'min width'
 '+' '#' ' '
+
+# Interaction
+	- '#': %x and %X, add 0x or 0X at the start.
+	- '0': %d, %i, %u, %x, %X. Add 
+		interaction '0' + '-': ignore ''
