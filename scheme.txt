@@ -1,0 +1,10 @@
+# Argumentos a tener en cuenta:
+	- %c, %s
+	- %p, 
+	- %d, %i, %u
+	- %x, %X
+	- %%
+
+# Flags
+'-' '0' '.' 'min width'
+'+' '#' ' '
