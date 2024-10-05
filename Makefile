@@ -1,8 +1,10 @@
 #
 NAME = libftprintf.a
 
-HEAD = ft_printf.h
-SRCS = ft_printf.c
+HEAD = printf.h
+SRCS = ft_printf.c \
+       ft_cs.c \
+       ft_utils.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 

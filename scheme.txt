@@ -1,5 +1,5 @@
 # Execution order
-	% [$] [flags] [width] conversion
+	% [flags] [width] [.precision] conversion
 
 # Conversion specifiers to have in mind:
 	- %c, %s
@@ -12,7 +12,7 @@
 	'-' '0' '.' 'min width'
 	'+' '#' ' '
 
-# Interaction
+# Explanation:
 	- '#': %x and %X, add 0x or 0X at the start.
 	- 'width': Decimal, padding the result to the right
 	- '0': %d, %i, %u, %x, %X. Modify the width field using 0s.

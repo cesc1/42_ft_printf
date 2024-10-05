@@ -1,7 +1,27 @@
 //
-#include "libft/libft.h"
+#include "printf.h"
+//#include <stdarg.h>
 
-int	hola(void)
+
+int	ft_printf(char const *str, ...)
 {
-	return (ft_strlen("hola"));
+	t_cs	cs;
+
+	while (*str)
+	{
+		if (*str == '%')
+		{
+			cs = load_cs(&str);
+			if (cs.load_ok)
+			{
+				ft_putchar_fd(' ', 1);
+			}
+			else
+				ft_putchar_fd(*str, 1);
+		}
+		else
+			ft_putchar_fd(*str, 1);
+		str++;
+	}
+	return (0);
 }
