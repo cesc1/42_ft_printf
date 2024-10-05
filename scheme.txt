@@ -1,5 +1,5 @@
 # Execution order
-% [$] [flags] [width] conversion
+	% [$] [flags] [width] conversion
 
 # Conversion specifiers to have in mind:
 	- %c, %s
@@ -9,8 +9,8 @@
 	- %%
 
 # Flags
-'-' '0' '.' 'min width'
-'+' '#' ' '
+	'-' '0' '.' 'min width'
+	'+' '#' ' '
 
 # Interaction
 	- '#': %x and %X, add 0x or 0X at the start.
@@ -19,7 +19,7 @@
 		Interaction '0' + '-': ignore '0'.
 		Interaction '0' + '.': ignore '0'
 	- '-': Modify the width field, padding to the right.
-	- ' ': %i %d. Add space if it's positive. I '0' flag, it stil adds space at position 0.
+	- ' ': %i %d. Add space if it's positive. If '0' flag, still adds space at position 0.
 	- '+': %i %d. Allways puts the sign. 
 		Interaction '+' + ' ': Ignores ' '.
 	- '.': %d %i %u %x %X. Like the flag '0', add 0s until it reach the precision number.
