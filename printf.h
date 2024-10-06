@@ -1,8 +1,9 @@
 //
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef PRINTF_H
+# define PRINTF_H
 
 # include "libft/libft.h"
+#include <stdarg.h>
 
 typedef struct s_cs
 {
@@ -20,5 +21,7 @@ typedef struct s_cs
 int	ft_printf(char const *str, ...);
 char	*char_in(const char *str, const char *set);
 t_cs	load_cs(const char **str);
+void	print_cs(t_cs cs, va_list args);
+void	print_width(char *str, t_cs cs);
 
 #endif

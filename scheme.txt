@@ -14,7 +14,7 @@
 
 # Explanation:
 	- '#': %x and %X, add 0x or 0X at the start.
-	- 'width': Decimal, padding the result to the right
+	- 'width': Decimal, padding the result to the right. Never truncates the result.
 	- '0': %d, %i, %u, %x, %X. Modify the width field using 0s.
 		Interaction '0' + '-': ignore '0'.
 		Interaction '0' + '.': ignore '0'
