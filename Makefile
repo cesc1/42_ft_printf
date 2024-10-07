@@ -1,7 +1,7 @@
 #
 NAME = libftprintf.a
 
-HEAD = printf.h
+HEAD = libftprintf.h
 SRCS = ft_printf.c \
        ft_cs_print.c \
        ft_cs_print_utils.c \
