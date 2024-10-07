@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int	count_chars(long num, int result)
+static int	count_chars(long long num, int result)
 {
 	if (num > 0)
 	{
@@ -28,7 +28,7 @@ static int	count_chars(long num, int result)
 	return (result);
 }
 
-static int	manage_negatives(long *num, char *result)
+static int	manage_negatives(long long *num, char *result)
 {
 	if (*num < 0)
 	{
@@ -39,26 +39,24 @@ static int	manage_negatives(long *num, char *result)
 	return (0);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long long n)
 {
-	long	num;
 	char	*result;
 	int		size;
 	int		is_neg;
 
-	num = n;
-	size = count_chars(num, 0);
+	size = count_chars(n, 0);
 	result = (char *)malloc((size + 1) * sizeof (char));
 	if (!result)
 	{
 		return (result);
 	}
-	is_neg = manage_negatives(&num, result);
+	is_neg = manage_negatives(&n, result);
 	result[size] = '\0';
 	while (--size >= is_neg)
 	{
-		result[size] = (num % 10) + '0';
-		num = num / 10;
+		result[size] = (n % 10) + '0';
+		n = n / 10;
 	}
 	return (result);
 }

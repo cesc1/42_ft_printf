@@ -1,7 +1,7 @@
 //
 #include "libftprintf.h"
 
-
+// If printing an int, manage the 0-. interaction outside
 void	print_width(char *str, t_cs cs)
 {
 	int	n;
