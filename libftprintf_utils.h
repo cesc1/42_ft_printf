@@ -24,6 +24,10 @@ char	*strjoin_free(char *str1, char *str2, unsigned int num_free);
 // Manage %conversion_specifiers
 t_cs	load_cs(const char **str);
 void	print_cs(t_cs cs, va_list args);
+void	print_cs_d(t_cs cs, va_list args);
+void	print_cs_u(t_cs cs, va_list args);
+void	print_cs_s(t_cs cs, va_list args);
+void	print_cs_c(t_cs cs, va_list args);
 void	print_width(char *str, t_cs cs);
 
 #endif
