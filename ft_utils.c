@@ -1,5 +1,5 @@
 //
-#include "libftprintf.h"
+#include "libft/libft.h"
 #include <stdlib.h>
 
 char	*char_in(const char *str, const char *set)

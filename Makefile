@@ -1,7 +1,10 @@
 #
 NAME = libftprintf.a
+LIBS = libft/libft.a
 
-HEAD = libftprintf.h
+HEAD = libftprintf.h \
+       libftprintf_utils.h
+
 SRCS = ft_printf.c \
        ft_cs_print.c \
        ft_cs_print_utils.c \
@@ -17,12 +20,11 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEAD) Makefile
-	cd libft; make bonus
+$(NAME): $(OBJS) $(HEAD) Makefile $(LIBS)
 	ar rcs $(NAME) $(OBJS)
 
-load_libft: 
-	cd libft; make bonus
+$(LIBS): 
+	cd libft && make bonus
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -35,4 +37,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re load_libft
+.PHONY: all clean fclean re

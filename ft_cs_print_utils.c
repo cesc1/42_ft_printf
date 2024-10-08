@@ -1,5 +1,6 @@
 //
-#include "libftprintf.h"
+#include "libft/libft.h"
+#include "libftprintf_utils.h"
 
 // If printing an int, manage the 0-. interaction outside
 void	print_width(char *str, t_cs cs)
