@@ -2,27 +2,48 @@
 #include "libftprintf_utils.h"
 #include "libft/libft.h"
 #include <stdarg.h>
+#include <stdlib.h>
 
-int	ft_printf(char const *str, ...)
+static char	*recalculate_str(const char *str, va_list args)
 {
 	t_cs	cs;
-	va_list	args;
+	char	*result;
 
-	va_start(args, str);
+	result = ft_strdup("");
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			cs = load_cs(&str);
 			if (cs.load_ok)
-				print_cs(cs, args);
+				result = strjoin_free(result, print_cs(cs, args), 3);
 			else
-				ft_putchar_fd(*str, 1);
+				result = strjoin_free(result, strdup_char(*str), 3);
 		}
 		else
-			ft_putchar_fd(*str, 1);
+				result = strjoin_free(result, strdup_char(*str), 3);
+		if (!result)
+			return (result);
 		str++;
 	}
+	return (result);
+}
+
+int	ft_printf(char const *str, ...)
+{
+	int	n;
+	va_list	args;
+	char	*result;
+
+	if (!str)
+		return (-1);
+	va_start(args, str);
+	result = recalculate_str(str, args);
 	va_end(args);
-	return (0);
+	if (!result)
+		return (-1);
+	n = ft_strlen(result);
+	ft_putstr_fd(result, 1);
+	free(result);
+	return (n);
 }

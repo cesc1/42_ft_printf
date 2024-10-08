@@ -2,6 +2,6 @@
 
 int	main()
 {
-	ft_printf(".%05u. \n", 333);
+	ft_printf("%+.3d%%\n", 5);
 	return (0);
 }

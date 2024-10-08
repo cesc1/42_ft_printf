@@ -3,26 +3,31 @@
 #include "libftprintf_utils.h"
 
 // If printing an %i%d%u, manage the 0-. interaction outside
-void	print_width(char *str, t_cs cs)
+char	*print_width(char *str, t_cs cs)
 {
 	int	n;
-	char	spacing_char;
 	int	i;
+	char	spacing_char;
+	char	*result;
 
+	if (!str)
+		return (NULL);
 	spacing_char = ' ';
 	if (cs.is_zero)
 		spacing_char = '0';
 	n = (int)ft_strlen(str);
-	i = -1;
+	result = ft_strdup("");
 	if (cs.width > n)
 	{
 		if (cs.is_neg)
-			ft_putstr_fd(str, 1);
+		result = strjoin_free(result, str, 1);
+		i = -1;
 		while (++i < cs.width - n)
-			ft_putchar_fd(spacing_char, 1);
+			result = strjoin_free(result, strdup_char(spacing_char), 3);
 		if (!cs.is_neg)
-			ft_putstr_fd(str, 1);
+			result = strjoin_free(result, str, 1);
 	}
 	else
-		ft_putstr_fd(str, 1);
+		result = strjoin_free(result, str, 1);
+	return (result);
 }

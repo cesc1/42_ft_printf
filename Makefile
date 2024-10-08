@@ -9,6 +9,7 @@ SRCS = ft_printf.c \
        ft_cs_print.c \
        ft_cs_print_d.c \
        ft_cs_print_s.c \
+       ft_cs_print_x.c \
        ft_cs_print_utils.c \
        ft_cs.c \
        ft_utils.c
