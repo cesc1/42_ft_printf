@@ -1,4 +1,15 @@
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cs.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 11:01:28 by faguirre          #+#    #+#             */
+/*   Updated: 2024/10/09 11:01:31 by faguirre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf_utils.h"
 #include "libft/libft.h"
 
@@ -18,7 +29,7 @@ static t_cs	init_cs(void)
 	return (cs);
 }
 
-static void load_precision(t_cs *cs, const char **str)
+static void	load_precision(t_cs *cs, const char **str)
 {
 	if (!ft_isdigit((*str)[1]))
 	{
@@ -31,7 +42,7 @@ static void load_precision(t_cs *cs, const char **str)
 		(*str)++;
 }
 
-static void load_width(t_cs *cs, const char **str)
+static void	load_width(t_cs *cs, const char **str)
 {
 	cs->width = ft_atoi(*str);
 	while (ft_isdigit((*str)[1]))
@@ -65,7 +76,7 @@ static void	load_flag(t_cs *cs, const char **c)
    if load fails, only advance 1 position */
 t_cs	load_cs(const char **str)
 {
-	t_cs	cs;
+	t_cs		cs;
 	const char	*str_start;
 
 	str_start = *str;

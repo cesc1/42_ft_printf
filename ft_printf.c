@@ -1,4 +1,15 @@
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 11:02:44 by faguirre          #+#    #+#             */
+/*   Updated: 2024/10/09 11:02:47 by faguirre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf_utils.h"
 #include "libft/libft.h"
 #include <stdarg.h>
@@ -21,7 +32,7 @@ static char	*recalculate_str(const char *str, va_list args)
 				result = strjoin_free(result, strdup_char(*str), 3);
 		}
 		else
-				result = strjoin_free(result, strdup_char(*str), 3);
+			result = strjoin_free(result, strdup_char(*str), 3);
 		if (!result)
 			return (result);
 		str++;
@@ -31,7 +42,7 @@ static char	*recalculate_str(const char *str, va_list args)
 
 int	ft_printf(char const *str, ...)
 {
-	int	n;
+	int		n;
 	va_list	args;
 	char	*result;
 

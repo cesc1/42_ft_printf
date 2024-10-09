@@ -1,4 +1,15 @@
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cs_print_s.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 11:02:05 by faguirre          #+#    #+#             */
+/*   Updated: 2024/10/09 11:02:07 by faguirre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf_utils.h"
 #include "libft/libft.h"
 #include <stdarg.h>
@@ -11,7 +22,7 @@ char	*print_cs_s(t_cs cs, va_list args)
 
 	s = va_arg(args, char *);
 	if (!s)
-		return(ft_strdup("(null)"));
+		return (ft_strdup("(null)"));
 	cs.is_zero = 0;
 	if (cs.precision != -1 && cs.precision < (int)ft_strlen(s))
 	{
@@ -35,5 +46,5 @@ char	*print_cs_c(t_cs cs, va_list args)
 	cs.is_zero = 0;
 	str[0] = c;
 	str[1] = '\0';
-	return(print_width((char *)str, cs));
+	return (print_width((char *)str, cs));
 }

@@ -1,4 +1,15 @@
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 11:02:57 by faguirre          #+#    #+#             */
+/*   Updated: 2024/10/09 11:02:59 by faguirre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include <stdlib.h>
 
@@ -22,7 +33,7 @@ char	*char_in(const char *str, const char *set)
 	return (ft_strchr(set, *str));
 }
 
-// Can control free inputs. Check if inputs are null, and if they are, free everything and leave.
+// Can control free inputs. Check if inputs are null, and if they are, free all
 char	*strjoin_free(char *str1, char *str2, unsigned int num_free)
 {
 	size_t	n1;

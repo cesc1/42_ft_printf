@@ -1,4 +1,15 @@
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cs_print_d.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 11:01:57 by faguirre          #+#    #+#             */
+/*   Updated: 2024/10/09 11:11:33 by faguirre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf_utils.h"
 #include "libft/libft.h"
 #include <stdarg.h>
@@ -7,10 +18,10 @@
 char	*print_cs_u(t_cs cs, va_list args)
 {
 	unsigned int	num;
-	int	n;
-	char	*str;
-	char	*result;
-		
+	int				n;
+	char			*str;
+	char			*result;
+
 	num = va_arg(args, unsigned int);
 	str = ft_itoa(num);
 	if (!str)
@@ -29,11 +40,11 @@ char	*print_cs_u(t_cs cs, va_list args)
 
 char	*print_cs_d(t_cs cs, va_list args)
 {
-	int	num;
-	int	n;
+	int		num;
+	int		n;
 	char	*str;
 	char	*result;
-		
+
 	num = va_arg(args, int);
 	str = ft_itoa(num);
 	if (!str)
