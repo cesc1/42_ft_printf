@@ -6,7 +6,7 @@
 #    By: faguirre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 11:03:57 by faguirre          #+#    #+#              #
-#    Updated: 2024/10/09 11:03:59 by faguirre         ###   ########.fr        #
+#    Updated: 2024/10/09 11:20:54 by faguirre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,4 +51,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+make bonus: all
+
+.PHONY: all clean fclean re bonus
