@@ -6,7 +6,7 @@
 #    By: faguirre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 10:47:10 by faguirre          #+#    #+#              #
-#    Updated: 2024/09/25 16:42:34 by faguirre         ###   ########.fr        #
+#    Updated: 2024/10/09 13:17:43 by faguirre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,20 +46,18 @@ SRCS = ft_isalpha.c \
        ft_putchar_fd.c \
        ft_putstr_fd.c \
        ft_putendl_fd.c \
-       ft_putnbr_fd.c
-
-BONUS = ft_lstnew_bonus.c \
-	ft_lstadd_front_bonus.c \
-	ft_lstsize_bonus.c \
-	ft_lstlast_bonus.c \
-	ft_lstadd_back_bonus.c \
-	ft_lstdelone_bonus.c \
-	ft_lstclear_bonus.c \
-	ft_lstiter_bonus.c \
-	ft_lstmap_bonus.c
+       ft_putnbr_fd.c \
+       ft_lstnew_bonus.c \
+       ft_lstadd_front_bonus.c \
+       ft_lstsize_bonus.c \
+       ft_lstlast_bonus.c \
+       ft_lstadd_back_bonus.c \
+       ft_lstdelone_bonus.c \
+       ft_lstclear_bonus.c \
+       ft_lstiter_bonus.c \
+       ft_lstmap_bonus.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
-OBJS_BONUS = $(patsubst %.c, %.o, $(SRCS) $(BONUS))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -74,17 +72,11 @@ $(NAME): $(OBJS) $(HEAD) Makefile
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJS_BONUS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-bonus: bonus.txt
-
-bonus.txt: $(OBJS_BONUS) $(HEAD) Makefile
-	touch bonus.txt
-	ar rcs $(NAME) $(OBJS_BONUS)
 
 .PHONY: all clean fclean re
