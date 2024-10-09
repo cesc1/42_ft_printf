@@ -6,7 +6,7 @@
 /*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:02:29 by faguirre          #+#    #+#             */
-/*   Updated: 2024/10/09 11:12:13 by faguirre         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:26:09 by faguirre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-static char	*itohex(unsigned int num, char is_upper)
+static char	*itohex(unsigned long num, char is_upper)
 {
 	const char	hex_l[16] = "0123456789abcdef";
 	const char	hex_u[16] = "0123456789ABCDEF";
@@ -91,6 +91,35 @@ char	*print_cs_x1(t_cs cs, va_list args)
 		str = strjoin_free("0", str, 2);
 	if (cs.is_hash)
 		str = strjoin_free("0X", str, 2);
+	result = print_width(str, cs);
+	free(str);
+	return (result);
+}
+
+char	*print_cs_p(t_cs cs, va_list args)
+{
+	int		n;
+	void	*ptr;
+	char	*str;
+	char	*result;
+
+	ptr = va_arg(args, void *);
+	if (!ptr)
+		return (ft_strdup("(null)"));
+	str = itohex((unsigned long)ptr, 0);
+	if (!str)
+		return (NULL);
+	n = (int)ft_strlen(str);
+	if (cs.is_neg || cs.precision != -1)
+		cs.is_zero = 0;
+	if (cs.is_zero)
+	{
+		cs.precision = cs.width - 2;
+		cs.width = 0;
+	}
+	while (cs.precision > n++)
+		str = strjoin_free("0", str, 2);
+	str = strjoin_free("0x", str, 2);
 	result = print_width(str, cs);
 	free(str);
 	return (result);

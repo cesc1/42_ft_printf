@@ -6,7 +6,7 @@
 /*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:02:57 by faguirre          #+#    #+#             */
-/*   Updated: 2024/10/09 11:02:59 by faguirre         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:57:39 by faguirre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ char	*strjoin_free(char *str1, char *str2, unsigned int num_free)
 	char	*result;
 
 	if (!str1 || !str2)
-		return (free_strs(str1, str2, num_free));
+		return (free_strs(str1, str2, 3));
 	n1 = ft_strlen(str1);
 	n2 = ft_strlen(str2);
 	result = (char *)malloc(n1 + n2 + 1);
 	if (!result)
-		return (free_strs(str1, str2, num_free));
+		return (free_strs(str1, str2, 3));
 	ft_strlcpy(result, str1, n1 + 1);
 	ft_strlcpy(&result[n1], str2, n2 + 1);
+	free_strs(str1, str2, num_free);
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:03:43 by faguirre          #+#    #+#             */
-/*   Updated: 2024/10/09 11:03:46 by faguirre         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:37:47 by faguirre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*print_cs_s(t_cs cs, va_list args);
 char	*print_cs_c(t_cs cs, va_list args);
 char	*print_cs_x(t_cs cs, va_list args);
 char	*print_cs_x1(t_cs cs, va_list args);
+char	*print_cs_p(t_cs cs, va_list args);
 char	*print_width(char *str, t_cs cs);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:01:45 by faguirre          #+#    #+#             */
-/*   Updated: 2024/10/09 11:01:48 by faguirre         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:02:24 by faguirre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ char	*print_cs(t_cs cs, va_list args)
 		result = print_cs_x(cs, args);
 	else if (cs.cs == 'X')
 		result = print_cs_x1(cs, args);
+	else if (cs.cs == 'p')
+		result = print_cs_p(cs, args);
 	return (result);
 }
