@@ -54,14 +54,14 @@ char	*print_cs_x(t_cs cs, va_list args)
 	n = (int)ft_strlen(str);
 	if (cs.is_neg || cs.precision != -1)
 		cs.is_zero = 0;
-	if (cs.is_hash && cs.is_zero)
+	if (cs.is_hash && cs.is_zero && num != 0)
 	{
 		cs.precision = cs.width - 2;
 		cs.width = 0;
 	}
 	while (cs.precision > n++)
 		str = strjoin_free("0", str, 2);
-	if (cs.is_hash)
+	if (cs.is_hash && num != 0)
 		str = strjoin_free("0x", str, 2);
 	result = print_width(str, cs);
 	free(str);
@@ -82,14 +82,14 @@ char	*print_cs_x1(t_cs cs, va_list args)
 	n = (int)ft_strlen(str);
 	if (cs.is_neg || cs.precision != -1)
 		cs.is_zero = 0;
-	if (cs.is_hash && cs.is_zero)
+	if (cs.is_hash && cs.is_zero && num != 0)
 	{
 		cs.precision = cs.width - 2;
 		cs.width = 0;
 	}
 	while (cs.precision > n++)
 		str = strjoin_free("0", str, 2);
-	if (cs.is_hash)
+	if (cs.is_hash && num != 0)
 		str = strjoin_free("0X", str, 2);
 	result = print_width(str, cs);
 	free(str);
