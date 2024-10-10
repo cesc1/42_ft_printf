@@ -6,7 +6,7 @@
 /*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:02:29 by faguirre          #+#    #+#             */
-/*   Updated: 2024/10/09 12:26:09 by faguirre         ###   ########.fr       */
+/*   Updated: 2024/10/10 14:34:57 by faguirre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,35 @@ static char	*itohex(unsigned long num, char is_upper)
 	return (result);
 }
 
+static char	*process_x(int num, char **str, t_cs cs, char is_upper)
+{
+	int		n;
+	char	*result;
+
+	n = (int)ft_strlen(*str);
+	if (cs.is_neg || cs.precision != -1)
+		cs.is_zero = 0;
+	if (cs.is_hash && cs.is_zero && num != 0)
+	{
+		cs.precision = cs.width - 2;
+		cs.width = 0;
+	}
+	while (cs.precision > n++)
+		*str = strjoin_free("0", *str, 2);
+	if (cs.is_hash && num != 0)
+	{
+		if (is_upper)
+			*str = strjoin_free("0X", *str, 2);
+		else
+			*str = strjoin_free("0x", *str, 2);
+	}
+	result = print_width(*str, cs);
+	return (result);
+}
+
 char	*print_cs_x(t_cs cs, va_list args)
 {
 	unsigned int	num;
-	int				n;
 	char			*result;
 	char			*str;
 
@@ -51,19 +76,7 @@ char	*print_cs_x(t_cs cs, va_list args)
 	str = itohex(num, 0);
 	if (!str)
 		return (NULL);
-	n = (int)ft_strlen(str);
-	if (cs.is_neg || cs.precision != -1)
-		cs.is_zero = 0;
-	if (cs.is_hash && cs.is_zero && num != 0)
-	{
-		cs.precision = cs.width - 2;
-		cs.width = 0;
-	}
-	while (cs.precision > n++)
-		str = strjoin_free("0", str, 2);
-	if (cs.is_hash && num != 0)
-		str = strjoin_free("0x", str, 2);
-	result = print_width(str, cs);
+	result = process_x(num, &str, cs, 0);
 	free(str);
 	return (result);
 }
@@ -71,7 +84,6 @@ char	*print_cs_x(t_cs cs, va_list args)
 char	*print_cs_x1(t_cs cs, va_list args)
 {
 	unsigned int	num;
-	int				n;
 	char			*result;
 	char			*str;
 
@@ -79,26 +91,13 @@ char	*print_cs_x1(t_cs cs, va_list args)
 	str = itohex(num, 1);
 	if (!str)
 		return (NULL);
-	n = (int)ft_strlen(str);
-	if (cs.is_neg || cs.precision != -1)
-		cs.is_zero = 0;
-	if (cs.is_hash && cs.is_zero && num != 0)
-	{
-		cs.precision = cs.width - 2;
-		cs.width = 0;
-	}
-	while (cs.precision > n++)
-		str = strjoin_free("0", str, 2);
-	if (cs.is_hash && num != 0)
-		str = strjoin_free("0X", str, 2);
-	result = print_width(str, cs);
+	result = process_x(num, &str, cs, 1);
 	free(str);
 	return (result);
 }
 
 char	*print_cs_p(t_cs cs, va_list args)
 {
-	int		n;
 	void	*ptr;
 	char	*str;
 	char	*result;
@@ -109,18 +108,15 @@ char	*print_cs_p(t_cs cs, va_list args)
 	str = itohex((unsigned long)ptr, 0);
 	if (!str)
 		return (NULL);
-	n = (int)ft_strlen(str);
-	if (cs.is_neg || cs.precision != -1)
-		cs.is_zero = 0;
-	if (cs.is_zero)
+	cs.is_hash = 1;
+	result = process_x(1, &str, cs, 0);
+	if (cs.is_space || cs.is_pos)
 	{
-		cs.precision = cs.width - 2;
-		cs.width = 0;
+		if (cs.is_space && !cs.is_pos)
+			result = strjoin_free(" ", result, 2);
+		else
+			result = strjoin_free("+", result, 2);
 	}
-	while (cs.precision > n++)
-		str = strjoin_free("0", str, 2);
-	str = strjoin_free("0x", str, 2);
-	result = print_width(str, cs);
 	free(str);
 	return (result);
 }
