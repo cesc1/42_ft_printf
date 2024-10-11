@@ -12,21 +12,27 @@
 
 #include "libft.h"
 
-static void	putnbr_recursive(long n, int fd)
+static int	putnbr_recursive(long n, int fd)
 {
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
+		if (!ft_putchar_fd('-', fd))
+			return (0);
 		n = -n;
 	}
 	if (n > 9)
 	{
-		putnbr_recursive(n / 10, fd);
+		if (!putnbr_recursive(n / 10, fd))
+			return (0);
 	}
-	ft_putchar_fd((n % 10) + '0', fd);
+	if (!ft_putchar_fd((n % 10) + '0', fd))
+		return (0);
+	return (1);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
-	putnbr_recursive(n, fd);
+	if (!putnbr_recursive(n, fd))
+		return (0);
+	return (1);
 }

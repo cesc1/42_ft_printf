@@ -11,7 +11,9 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-LIBS = libft/libft.a
+LIB = libft
+
+LIB_PATH = $(LIB)/$(LIB).a
 
 HEAD = libftprintf.h \
        libftprintf_utils.h
@@ -37,11 +39,13 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEAD) Makefile $(LIBS)
+$(NAME): $(OBJS) $(HEAD) Makefile $(LIB_PATH)
+	cp $(LIB_PATH) $(LIB).a
+	mv $(LIB).a $(NAME)
 	ar rcs $(NAME) $(OBJS)
 
-$(LIBS): 
-	cd libft && make
+$(LIB_PATH):
+	cd $(LIB) && make
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -54,9 +58,11 @@ fclean: clean
 
 re: fclean all
 
-make bonus: $(OBJS_BONUS) $(LIBS)
+make bonus: $(OBJS_BONUS) $(LIB_PATH)
+	cp $(LIB_PATH) $(LIB).a
+	mv $(LIB).a $(NAME)
 	ar rcs $(NAME) $(OBJS_BONUS)
 	sleep 0.01
-	touch $(HEAD)
+	touch Makefile
 
 .PHONY: all clean fclean re bonus
