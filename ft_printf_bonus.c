@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faguirre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:02:44 by faguirre          #+#    #+#             */
-/*   Updated: 2024/10/09 11:02:47 by faguirre         ###   ########.fr       */
+/*   Updated: 2024/10/12 12:33:25 by faguirre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	ft_printf(char const *str, ...)
 	if (!result)
 		return (-1);
 	n = ft_strlen(result);
-	ft_putstr_fd(result, 1);
+	if(!ft_putstr_fd(result, 1))
+		n = -1;
 	free(result);
 	return (n);
 }
