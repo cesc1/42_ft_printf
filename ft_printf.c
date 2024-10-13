@@ -12,50 +12,40 @@
 
 #include "libftprintf_utils.h"
 #include "libft/libft.h"
-#include <stdarg.h>
 #include <stdlib.h>
 
-static char	*recalculate_str(const char *str, va_list args)
+static void	*calculate_str(const char *str, va_list args, int *result)
 {
 	t_cs	cs;
-	char	*result;
 
-	result = ft_strdup("");
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			cs = load_cs(&str);
 			if (cs.load_ok)
-				result = strjoin_free(result, print_cs(cs, args), 3);
+				print_cs(cs, args, &result);
 			else
-				result = strjoin_free(result, strdup_char(*str), 3);
+				print_char(*str, &result);
 		}
 		else
-			result = strjoin_free(result, strdup_char(*str), 3);
-		if (!result)
-			return (result);
+			print_char(*str, &result);
+		if (result == -1)
+			return ;
 		str++;
 	}
-	return (result);
 }
 
 int	ft_printf(char const *str, ...)
 {
-	int		n;
 	va_list	args;
-	char	*result;
+	int		result;
 
 	if (!str)
 		return (-1);
+	result = 0;
 	va_start(args, str);
-	result = recalculate_str(str, args);
+	result = calculate_str(str, args, &result);
 	va_end(args);
-	if (!result)
-		return (-1);
-	n = ft_strlen(result);
-	if (!ft_putstr_fd(result, 1))
-		n = -1;
-	free(result);
-	return (n);
+	return (result);
 }

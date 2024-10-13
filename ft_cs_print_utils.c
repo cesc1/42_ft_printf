@@ -14,12 +14,11 @@
 #include "libftprintf_utils.h"
 
 // If printing an %i%d%u, manage the 0-. interaction outside
-char	*print_width(char *str, t_cs cs)
+void	print_width(char *str, t_cs cs, int *result)
 {
 	int		n;
 	int		i;
 	char	spacing_char;
-	char	*result;
 
 	if (!str)
 		return (NULL);
@@ -27,7 +26,6 @@ char	*print_width(char *str, t_cs cs)
 	if (cs.is_zero)
 		spacing_char = '0';
 	n = (int)ft_strlen(str);
-	result = ft_strdup("");
 	if (cs.width > n)
 	{
 		if (cs.is_neg)

@@ -37,7 +37,7 @@ char	*print_cs_s(t_cs cs, va_list args)
 	return (result);
 }
 
-char	*print_cs_c(t_cs cs, va_list args)
+void	print_cs_c(t_cs cs, va_list args, int *result)
 {
 	unsigned char	c;
 	unsigned char	str[2];
@@ -46,5 +46,5 @@ char	*print_cs_c(t_cs cs, va_list args)
 	cs.is_zero = 0;
 	str[0] = c;
 	str[1] = '\0';
-	return (print_width((char *)str, cs));
+	print_width((char *)str, cs, &result);
 }

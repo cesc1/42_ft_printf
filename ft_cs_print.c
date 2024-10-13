@@ -15,15 +15,12 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-char	*print_cs(t_cs cs, va_list args)
+void	print_cs(t_cs cs, va_list args, int *result)
 {
-	char	*result;
-
-	result = NULL;
 	if (cs.cs == '%')
-		result = strdup_char('%');
+		print_char('%', &result);
 	else if (cs.cs == 'c')
-		result = print_cs_c(cs, args);
+		print_cs_c(cs, args, &result);
 	else if (cs.cs == 's')
 		result = print_cs_s(cs, args);
 	else if (cs.cs == 'i' || cs.cs == 'd')
@@ -36,5 +33,7 @@ char	*print_cs(t_cs cs, va_list args)
 		result = print_cs_x1(cs, args);
 	else if (cs.cs == 'p')
 		result = print_cs_p(cs, args);
+	else
+		*result = -1;
 	return (result);
 }

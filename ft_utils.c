@@ -64,3 +64,13 @@ char	*strdup_char(char c)
 	result[1] = '\0';
 	return (result);
 }
+
+void	print_char(char c, int *result)
+{
+	int	temp_result;
+
+	if (!ft_putchar_fd(c))
+		*result = -1;
+	else
+		*result += 1;
+}
