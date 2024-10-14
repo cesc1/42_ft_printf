@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 
-static void	*calculate_str(const char *str, va_list args, int *result)
+static void	calculate_str(const char *str, va_list args, int *result)
 {
 	t_cs	cs;
 
@@ -24,13 +24,16 @@ static void	*calculate_str(const char *str, va_list args, int *result)
 		{
 			cs = load_cs(&str);
 			if (cs.load_ok)
-				print_cs(cs, args, &result);
+			{
+				print_cs(&cs, args);
+				*result += cs.n;
+			}
 			else
-				print_char(*str, &result);
+				print_char(*str, result);
 		}
 		else
-			print_char(*str, &result);
-		if (result == -1)
+			print_char(*str, result);
+		if (*result == -1 || cs.n == -1)
 			return ;
 		str++;
 	}
@@ -45,7 +48,7 @@ int	ft_printf(char const *str, ...)
 		return (-1);
 	result = 0;
 	va_start(args, str);
-	result = calculate_str(str, args, &result);
+	calculate_str(str, args, &result);
 	va_end(args);
 	return (result);
 }

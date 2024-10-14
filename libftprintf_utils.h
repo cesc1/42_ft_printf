@@ -28,24 +28,27 @@ typedef struct s_cs
 	int		width;
 	int		precision;
 	char	load_ok;
+	int		n;
 }	t_cs;
 
 // General utils
 char	*char_in(const char *str, const char *set);
 char	*strjoin_free(char *str1, char *str2, unsigned int num_free);
 char	*strdup_char(char c);
-void	print_char(char c, int *result)
+void	print_char(char c, int *result);
+void	print_str(char *str, int *result);
+int		process_null_ptr(t_cs *cs);
 
 // Manage %conversion_specifiers.
 t_cs	load_cs(const char **str);
-void	print_cs(t_cs cs, va_list args, int *result);
-char	*print_cs_d(t_cs cs, va_list args);
-char	*print_cs_u(t_cs cs, va_list args);
-char	*print_cs_s(t_cs cs, va_list args);
-void	print_cs_c(t_cs cs, va_list args, int *result);
-char	*print_cs_x(t_cs cs, va_list args);
-char	*print_cs_x1(t_cs cs, va_list args);
-char	*print_cs_p(t_cs cs, va_list args);
-void	print_width(char *str, t_cs cs, int *result);
+void	print_cs(t_cs *cs, va_list args);
+void	print_cs_d(t_cs *cs, va_list args);
+void	print_cs_u(t_cs *cs, va_list args);
+void	print_cs_s(t_cs *cs, va_list args);
+void	print_cs_c(t_cs *cs, va_list args);
+void	print_cs_x(t_cs *cs, va_list args, char is_upper);
+void	print_cs_p(t_cs *cs, va_list args);
+void	print_width(char *str, t_cs *cs);
+int		check_str_malloc(char *str, int *result);
 
 #endif

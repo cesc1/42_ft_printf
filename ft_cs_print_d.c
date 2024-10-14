@@ -15,53 +15,49 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-char	*print_cs_u(t_cs cs, va_list args)
+void	print_cs_u(t_cs *cs, va_list args)
 {
-	unsigned int	num;
-	int				n;
-	char			*str;
-	char			*result;
+	int		n;
+	char	*str;
 
-	num = va_arg(args, unsigned int);
-	str = ft_itoa(num);
-	if (!str)
-		return (NULL);
+	str = ft_itoa(va_arg(args, unsigned int));
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
 	n = (int)ft_strlen(str);
-	while (cs.precision > n++)
+	while (cs->precision > n++)
 		str = strjoin_free("0", str, 2);
-	if (!str)
-		return (NULL);
-	if (cs.is_neg || cs.precision != -1)
-		cs.is_zero = 0;
-	result = print_width(str, cs);
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
+	if (cs->is_neg || cs->precision != -1)
+		cs->is_zero = 0;
+	print_width(str, cs);
 	free(str);
-	return (result);
 }
 
-char	*print_cs_d(t_cs cs, va_list args)
+void	print_cs_d(t_cs *cs, va_list args)
 {
 	int		num;
 	int		n;
 	char	*str;
-	char	*result;
 
 	num = va_arg(args, int);
 	str = ft_itoa(num);
-	if (!str)
-		return (NULL);
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
 	n = (int)ft_strlen(str);
-	while (cs.precision > n++)
+	while (cs->precision > n++)
 		str = strjoin_free("0", str, 2);
-	if ((cs.is_space || cs.is_pos) && num >= 0)
+	if ((cs->is_space || cs->is_pos) && num >= 0)
 	{
-		if (cs.is_space && !cs.is_pos)
+		if (cs->is_space && !cs->is_pos)
 			str = strjoin_free(" ", str, 2);
 		else
 			str = strjoin_free("+", str, 2);
 	}
-	if (cs.is_neg || cs.precision != -1)
-		cs.is_zero = 0;
-	result = print_width(str, cs);
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
+	if (cs->is_neg || cs->precision != -1)
+		cs->is_zero = 0;
+	print_width(str, cs);
 	free(str);
-	return (result);
 }

@@ -15,36 +15,48 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-char	*print_cs_s(t_cs cs, va_list args)
+void	print_cs_s(t_cs *cs, va_list args)
 {
 	char	*s;
-	char	*result;
-
+	
 	s = va_arg(args, char *);
 	if (!s)
-		return (ft_strdup("(null)"));
-	cs.is_zero = 0;
-	if (cs.precision != -1 && cs.precision < (int)ft_strlen(s))
 	{
-		s = ft_substr(s, 0, cs.precision);
+		print_str("(null)", &(cs->n));
+		return ;
+	}
+	cs->is_zero = 0;
+	if (cs->precision != -1 && cs->precision < (int)ft_strlen(s))
+	{
+		s = ft_substr(s, 0, cs->precision);
 		if (!s)
-			return (NULL);
-		result = print_width(s, cs);
+		{
+			cs->n = -1;
+			return ;
+		}
+		print_width(s, cs);
 		free(s);
 	}
 	else
-		result = print_width(s, cs);
-	return (result);
+		print_width(s, cs);
 }
 
-void	print_cs_c(t_cs cs, va_list args, int *result)
+void	print_cs_c(t_cs *cs, va_list args)
 {
 	unsigned char	c;
-	unsigned char	str[2];
+	int				i;
 
 	c = va_arg(args, int);
-	cs.is_zero = 0;
-	str[0] = c;
-	str[1] = '\0';
-	print_width((char *)str, cs, &result);
+	if (cs->width > 1)
+	{
+		if (cs->is_neg)
+			print_char(c, &(cs->n));
+		i = -1;
+		while (++i < cs->width - 1)
+			print_char(' ', &(cs->n));
+		if (!cs->is_neg)
+			print_char(c, &(cs->n));
+	}
+	else
+		print_char(c, &(cs->n));
 }

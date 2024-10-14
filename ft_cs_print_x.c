@@ -40,83 +40,72 @@ static char	*itohex(unsigned long num, char is_upper)
 	return (result);
 }
 
-static char	*process_x(int num, char **str, t_cs cs, char is_upper)
+static void	process_x(unsigned int num, char **str, t_cs *cs, char is_upper)
 {
-	int		n;
-	char	*result;
+	int	n;
 
 	n = (int)ft_strlen(*str);
-	if (cs.is_neg || cs.precision != -1)
-		cs.is_zero = 0;
-	if (cs.is_hash && cs.is_zero && num != 0)
+	if (cs->is_neg || cs->precision != -1)
+		cs->is_zero = 0;
+	if (cs->is_hash && cs->is_zero && num != 0)
 	{
-		cs.precision = cs.width - 2;
-		cs.width = 0;
+		cs->precision = cs->width - 2;
+		cs->width = 0;
 	}
-	while (cs.precision > n++)
+	while (cs->precision > n++)
 		*str = strjoin_free("0", *str, 2);
-	if (cs.is_hash && num != 0)
+	if (cs->is_hash && num != 0)
 	{
 		if (is_upper)
 			*str = strjoin_free("0X", *str, 2);
 		else
 			*str = strjoin_free("0x", *str, 2);
 	}
-	result = print_width(*str, cs);
-	return (result);
+	if ((int)ft_strlen(*str) >= cs->width)
+		cs->width = 0;
 }
 
-char	*print_cs_x(t_cs cs, va_list args)
+void	print_cs_x(t_cs *cs, va_list args, char is_upper)
 {
 	unsigned int	num;
-	char			*result;
 	char			*str;
 
 	num = va_arg(args, unsigned int);
-	str = itohex(num, 0);
-	if (!str)
-		return (NULL);
-	result = process_x(num, &str, cs, 0);
+	str = itohex(num, is_upper);
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
+	process_x(num, &str, cs, is_upper);
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
+	print_width(str, cs);
 	free(str);
-	return (result);
 }
 
-char	*print_cs_x1(t_cs cs, va_list args)
-{
-	unsigned int	num;
-	char			*result;
-	char			*str;
-
-	num = va_arg(args, unsigned int);
-	str = itohex(num, 1);
-	if (!str)
-		return (NULL);
-	result = process_x(num, &str, cs, 1);
-	free(str);
-	return (result);
-}
-
-char	*print_cs_p(t_cs cs, va_list args)
+void	print_cs_p(t_cs *cs, va_list args)
 {
 	void	*ptr;
 	char	*str;
-	char	*result;
 
 	ptr = va_arg(args, void *);
 	if (!ptr)
-		return (ft_strdup("(null)"));
-	str = itohex((unsigned long)ptr, 0);
-	if (!str)
-		return (NULL);
-	cs.is_hash = 1;
-	result = process_x(1, &str, cs, 0);
-	if (cs.is_space || cs.is_pos)
 	{
-		if (cs.is_space && !cs.is_pos)
-			result = strjoin_free(" ", result, 2);
-		else
-			result = strjoin_free("+", result, 2);
+		process_null_ptr(cs);
+		return ;
 	}
+	str = itohex((unsigned long)ptr, 0);
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
+	cs->is_hash = 1;
+	process_x(1, &str, cs, 0);
+	if ((cs->is_space || cs->is_pos))
+	{
+		if (cs->is_space && !cs->is_pos)
+			str = strjoin_free(" ", str, 2);
+		else
+			str = strjoin_free("+", str, 2);
+	}
+	if (!check_str_malloc(str, &(cs->n)))
+		return ;
+	print_width(str, cs);
 	free(str);
-	return (result);
 }

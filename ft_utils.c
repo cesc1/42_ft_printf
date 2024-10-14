@@ -53,24 +53,18 @@ char	*strjoin_free(char *str1, char *str2, unsigned int num_free)
 	return (result);
 }
 
-char	*strdup_char(char c)
-{
-	char	*result;
-
-	result = (char *)malloc(2);
-	if (!result)
-		return (NULL);
-	result[0] = c;
-	result[1] = '\0';
-	return (result);
-}
-
 void	print_char(char c, int *result)
 {
-	int	temp_result;
-
-	if (!ft_putchar_fd(c))
+	if (!ft_putchar_fd(c, 1))
 		*result = -1;
 	else
 		*result += 1;
+}
+
+void	print_str(char *str, int *result)
+{
+	if (!ft_putstr_fd(str, 1))
+		*result = -1;
+	else
+		*result += ft_strlen(str);
 }

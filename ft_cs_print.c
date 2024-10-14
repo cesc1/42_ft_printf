@@ -15,25 +15,24 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-void	print_cs(t_cs cs, va_list args, int *result)
+void	print_cs(t_cs *cs, va_list args)
 {
-	if (cs.cs == '%')
-		print_char('%', &result);
-	else if (cs.cs == 'c')
-		print_cs_c(cs, args, &result);
-	else if (cs.cs == 's')
-		result = print_cs_s(cs, args);
-	else if (cs.cs == 'i' || cs.cs == 'd')
-		result = print_cs_d(cs, args);
-	else if (cs.cs == 'u')
-		result = print_cs_u(cs, args);
-	else if (cs.cs == 'x')
-		result = print_cs_x(cs, args);
-	else if (cs.cs == 'X')
-		result = print_cs_x1(cs, args);
-	else if (cs.cs == 'p')
-		result = print_cs_p(cs, args);
+	if (cs->cs == '%')
+		print_char('%', &(cs->n));
+	else if (cs->cs == 'c')
+		print_cs_c(cs, args);
+	else if (cs->cs == 's')
+		print_cs_s(cs, args);
+	else if (cs->cs == 'i' || cs->cs == 'd')
+		print_cs_d(cs, args);
+	else if (cs->cs == 'u')
+		print_cs_u(cs, args);
+	else if (cs->cs == 'x')
+		print_cs_x(cs, args, 0);
+	else if (cs->cs == 'X')
+		print_cs_x(cs, args, 1);
+	else if (cs->cs == 'p')
+		print_cs_p(cs, args);
 	else
-		*result = -1;
-	return (result);
+		cs->n = -1;
 }

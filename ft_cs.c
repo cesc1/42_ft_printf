@@ -26,6 +26,7 @@ static t_cs	init_cs(void)
 	cs.width = 0;
 	cs.precision = -1;
 	cs.load_ok = 1;
+	cs.n = 0;
 	return (cs);
 }
 
