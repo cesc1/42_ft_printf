@@ -58,11 +58,4 @@ fclean: clean
 
 re: fclean all
 
-make bonus: $(OBJS_BONUS) $(LIB_PATH)
-	cp $(LIB_PATH) $(LIB).a
-	mv $(LIB).a $(NAME)
-	ar rcs $(NAME) $(OBJS_BONUS)
-	sleep 0.01
-	touch Makefile
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
