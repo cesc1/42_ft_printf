@@ -60,3 +60,5 @@ functions, and advanced uses of `printf` (conversions, flags).
   management
 
 ## 2.4 Internal structure
+
+![](project_scheme.png)
