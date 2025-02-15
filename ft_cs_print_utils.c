@@ -72,7 +72,7 @@ int	process_null_ptr(t_cs *cs)
 		str = ft_strdup("(null)");
 	else
 		return (0);
-	if(!check_str_malloc(str, &(cs->n)))
+	if (!check_str_malloc(str, &(cs->n)))
 		return (0);
 	print_width(str, cs);
 	free(str);

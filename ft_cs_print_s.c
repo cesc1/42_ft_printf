@@ -18,7 +18,7 @@
 void	print_cs_s(t_cs *cs, va_list args)
 {
 	char	*s;
-	
+
 	s = va_arg(args, char *);
 	if (!s)
 	{
